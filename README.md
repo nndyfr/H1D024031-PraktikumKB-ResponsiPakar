@@ -19,7 +19,7 @@ Sistem pakar berbasis web untuk mendiagnosa jenis anemia pada perempuan usia pro
 
 ## Deskripsi Proyek
 
-AnemiaExpert adalah sistem pakar diagnosa anemia berbasis web yang berjalan sepenuhnya di browser tanpa memerlukan server atau instalasi tambahan. Sistem mengajukan 10 pertanyaan seputar gejala klinis kepada pengguna, lalu memprosesnya menggunakan mesin inferensi Forward Chaining dengan 19 aturan produksi untuk menghasilkan diagnosa jenis anemia yang paling sesuai.
+AnemiaExpert adalah sistem pakar diagnosa anemia berbasis web yang berjalan sepenuhnya di browser tanpa memerlukan server atau instalasi tambahan. Sistem mengajukan 18 pertanyaan seputar gejala klinis kepada pengguna, lalu memprosesnya menggunakan mesin inferensi Forward Chaining dengan 16 aturan produksi untuk menghasilkan diagnosa jenis anemia yang paling sesuai.
 
 Output sistem berupa salah satu dari empat jenis anemia, atau tidak terindikasi anemia disertai skor kesesuaian tiap diagnosa dan rekomendasi penanganan awal. Sistem ini bersifat indikatif dan tidak menggantikan diagnosis tenaga medis profesional.
 
@@ -27,9 +27,9 @@ Output sistem berupa salah satu dari empat jenis anemia, atau tidak terindikasi 
 
 ## Fitur Utama
 
-- Input interaktif berupa 10 pertanyaan gejala dengan jawaban Ya/Tidak (dapat dijawab via klik atau keyboard)
+- Input interaktif berupa 18 pertanyaan gejala dengan jawaban Ya/Tidak (dapat dijawab via klik atau keyboard)
 - Navigasi maju-mundur antar pertanyaan tanpa kehilangan jawaban sebelumnya
-- Mesin forward chaining lengkap dengan evaluasi 19 aturan produksi berbobot
+- Mesin forward chaining lengkap dengan evaluasi 16 aturan produksi berbobot
 - Visualisasi skor kesesuaian semua diagnosa dalam bentuk progress bar
 - Rekomendasi penanganan awal yang spesifik per jenis anemia
 - Progress bar pertanyaan real-time selama sesi diagnosis
@@ -157,7 +157,7 @@ Sistem-Pakar-Anemia/
 ├── script.js         # Logika navigasi, sesi diagnosis, dan rendering hasil
 └── kb/
     ├── gejala.js     # Basis pengetahuan: daftar 18 gejala
-    ├── rules.js      # Basis aturan: 21 aturan forward chaining + data diagnosa
+    ├── rules.js      # Basis aturan: 16 aturan forward chaining + data diagnosa
     └── engine.js     # Mesin inferensi forward chaining
 ```
 
