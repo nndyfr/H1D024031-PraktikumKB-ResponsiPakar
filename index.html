@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AnemiaExpert — Sistem Pakar Diagnosa Anemia</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ══ LAYAR 1: LANDING ══ -->
+  <div class="screen" id="screen-landing">
+    <!-- Decorative blobs -->
+    <div class="landing-blob blob-1"></div>
+    <div class="landing-blob blob-2"></div>
+
+    <div class="landing-wrap">
+
+      <div class="landing-left">
+        <div class="brand-tag">Sistem Pakar &nbsp;·&nbsp; Forward Chaining</div>
+        <h1 class="landing-title">Anemia<br><em>Expert</em></h1>
+        <p class="landing-desc">
+          Deteksi dini jenis anemia pada perempuan usia produktif berdasarkan gejala klinis menggunakan metode inferensi Forward Chaining.
+        </p>
+        <div class="landing-disclaimer">⚠ Hasil bersifat indikatif — bukan pengganti diagnosis dokter</div>
+      </div>
+
+      <div class="landing-right">
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-icon">🩸</div>
+            <div class="info-num">4</div>
+            <div class="info-lbl">Jenis Anemia</div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">📋</div>
+            <div class="info-num">10</div>
+            <div class="info-lbl">Pertanyaan</div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">⚡</div>
+            <div class="info-num">21</div>
+            <div class="info-lbl">Basis Aturan</div>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">👩</div>
+            <div class="info-num">15–49</div>
+            <div class="info-lbl">Usia Sasaran</div>
+          </div>
+        </div>
+
+        <button class="btn-mulai" onclick="mulaiDiagnosa()">
+          Mulai Diagnosa
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+
+        <div class="jenis-chips">
+          <span class="chip adb">ADB · Def. Besi</span>
+          <span class="chip adf">ADF · Def. Folat/B12</span>
+          <span class="chip apk">APK · Penyakit Kronis</span>
+          <span class="chip aha">AHA · Hemolitik</span>
+        </div>
+      </div>
+
+    </div>
+    <footer class="screen-footer">
+      AnemiaExpert &nbsp;·&nbsp; Sistem Pakar Diagnosa Anemia pada Perempuan Usia Produktif &nbsp;·&nbsp; Praktikum Kecerdasan Buatan &nbsp;·&nbsp; Informatika Unsoed
+    </footer>
+  </div>
+
+
+  <!-- ══ LAYAR 2: QUIZ ══ -->
+  <div class="screen hidden" id="screen-quiz">
+    <div class="quiz-wrap">
+
+      <div class="quiz-topbar">
+        <button class="btn-back-sm" onclick="kembaliLanding()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Beranda
+        </button>
+        <span class="quiz-brand">AnemiaExpert</span>
+        <span class="quiz-counter" id="quiz-counter">1 / 10</span>
+      </div>
+
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+
+      <div class="question-card" id="question-card">
+        <div class="q-badge" id="q-id">G01</div>
+        <p class="q-teks" id="q-teks">Memuat pertanyaan...</p>
+
+        <div class="q-btns">
+          <button class="q-btn q-ya" id="btn-ya" onclick="jawab(true)">
+            <span class="q-icon">✓</span>
+            <span class="q-label">Ya</span>
+            <span class="q-hint">tekan Y</span>
+          </button>
+          <button class="q-btn q-tidak" id="btn-tidak" onclick="jawab(false)">
+            <span class="q-icon">✕</span>
+            <span class="q-label">Tidak</span>
+            <span class="q-hint">tekan N</span>
+          </button>
+        </div>
+
+        <button class="btn-prev" id="btn-prev" onclick="prevGejala()">← Pertanyaan sebelumnya</button>
+      </div>
+
+    </div>
+    <footer class="screen-footer">
+      AnemiaExpert &nbsp;·&nbsp; Sistem Pakar Diagnosa Anemia pada Perempuan Usia Produktif &nbsp;·&nbsp; Praktikum Kecerdasan Buatan &nbsp;·&nbsp; Informatika Unsoed
+    </footer>
+  </div>
+
+
+  <!-- ══ LAYAR 3: HASIL ══ -->
+  <div class="screen hidden" id="screen-hasil">
+    <div class="hasil-wrap">
+
+      <div class="hasil-header">
+        <div class="hasil-left">
+          <div class="hasil-emoji" id="res-emoji">🩸</div>
+          <div>
+            <div class="hasil-kode" id="res-kode">ADB</div>
+            <h2 class="hasil-nama" id="res-nama">Anemia Defisiensi Besi</h2>
+            <p class="hasil-desc" id="res-desc">—</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-item">
+            <div class="stat-num" id="stat-ya">—</div>
+            <div class="stat-lbl">Gejala Ditemukan</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num" id="stat-tidak">—</div>
+            <div class="stat-lbl">Gejala Tidak Ada</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num" id="stat-rules">—</div>
+            <div class="stat-lbl">Rules Terpenuhi</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hasil-body">
+        <div class="hasil-col skor-col">
+          <div class="col-label">Skor Kesesuaian</div>
+          <div class="skor-list" id="skor-list"></div>
+        </div>
+        <div class="hasil-col rek-col">
+          <div class="col-label">Rekomendasi Penanganan Awal</div>
+          <ul class="rek-list" id="rek-list"></ul>
+        </div>
+      </div>
+
+      <div class="hasil-footer-row">
+        <div class="disclaimer-box">
+          ⚠ Hasil ini bersifat indikatif dan tidak menggantikan diagnosis dokter. Segera konsultasikan kondisi Anda ke tenaga medis profesional.
+        </div>
+        <button class="btn-ulangi" onclick="ulangi()">↺ Ulangi Diagnosa</button>
+      </div>
+
+    </div>
+    <footer class="screen-footer">
+      AnemiaExpert &nbsp;·&nbsp; Sistem Pakar Diagnosa Anemia pada Perempuan Usia Produktif &nbsp;·&nbsp; Praktikum Kecerdasan Buatan &nbsp;·&nbsp; Informatika Unsoed
+    </footer>
+  </div>
+
+  <script src="kb/gejala.js"></script>
+  <script src="kb/rules.js"></script>
+  <script src="kb/engine.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
