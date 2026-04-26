@@ -81,30 +81,25 @@ const DIAGNOSA = {
 // kondisi: gejala yang harus dijawab YA agar rule terpenuhi
 // bobot: kekuatan kesimpulan (3=kuat, 2=sedang, 1=lemah)
 const RULES = [
-  // === ANEMIA DEFISIENSI BESI (ADB) ===
+  // ANEMIA DEFISIENSI BESI (ADB) 
   { id: 'R01', kondisi: ['G01', 'G02', 'G06', 'G07'], kesimpulan: 'ADB', bobot: 3 },
   { id: 'R02', kondisi: ['G01', 'G02', 'G09'],        kesimpulan: 'ADB', bobot: 3 },
   { id: 'R03', kondisi: ['G07', 'G08', 'G10'],        kesimpulan: 'ADB', bobot: 3 },
   { id: 'R04', kondisi: ['G01', 'G02', 'G22'],        kesimpulan: 'ADB', bobot: 2 },
-  { id: 'R05', kondisi: ['G01', 'G02', 'G23'],        kesimpulan: 'ADB', bobot: 2 },
-  { id: 'R06', kondisi: ['G24', 'G01', 'G02'],        kesimpulan: 'ADB', bobot: 2 },
   { id: 'R07', kondisi: ['G06', 'G10', 'G02'],        kesimpulan: 'ADB', bobot: 2 },
-  { id: 'R08', kondisi: ['G03', 'G04', 'G22', 'G02'], kesimpulan: 'ADB', bobot: 2 },
 
-  // === ANEMIA DEFISIENSI FOLAT / B12 (ADF) ===
+  // ANEMIA DEFISIENSI FOLAT / B12 (ADF)
   { id: 'R09', kondisi: ['G11', 'G12', 'G13'],        kesimpulan: 'ADF', bobot: 3 },
   { id: 'R10', kondisi: ['G08', 'G13', 'G11'],        kesimpulan: 'ADF', bobot: 3 },
   { id: 'R11', kondisi: ['G01', 'G02', 'G11', 'G14'], kesimpulan: 'ADF', bobot: 2 },
-  { id: 'R12', kondisi: ['G24', 'G11', 'G12'],        kesimpulan: 'ADF', bobot: 2 },
   { id: 'R13', kondisi: ['G12', 'G14', 'G01'],        kesimpulan: 'ADF', bobot: 1 },
 
-  // === ANEMIA PENYAKIT KRONIS (APK) ===
+  // ANEMIA PENYAKIT KRONIS (APK)
   { id: 'R14', kondisi: ['G16', 'G15', 'G01', 'G02'], kesimpulan: 'APK', bobot: 3 },
   { id: 'R15', kondisi: ['G16', 'G17', 'G02'],        kesimpulan: 'APK', bobot: 3 },
-  { id: 'R16', kondisi: ['G17', 'G18', 'G15', 'G01'], kesimpulan: 'APK', bobot: 2 },
   { id: 'R17', kondisi: ['G16', 'G01', 'G15'],        kesimpulan: 'APK', bobot: 2 },
 
-  // === ANEMIA HEMOLITIK (AHA) ===
+  // ANEMIA HEMOLITIK (AHA)
   { id: 'R18', kondisi: ['G19', 'G20'],               kesimpulan: 'AHA', bobot: 3 },
   { id: 'R19', kondisi: ['G19', 'G17', 'G02'],        kesimpulan: 'AHA', bobot: 3 },
   { id: 'R20', kondisi: ['G21', 'G01', 'G02', 'G17'], kesimpulan: 'AHA', bobot: 2 },
