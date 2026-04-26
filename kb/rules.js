@@ -1,4 +1,3 @@
-// kb/rules.js
 // Basis aturan IF-THEN untuk forward chaining
 // Setiap rule: kondisi (array gejala yang harus YA) → kesimpulan (jenis anemia) + bobot kekuatan
 
@@ -79,7 +78,6 @@ const DIAGNOSA = {
   },
 };
 
-// Basis aturan forward chaining
 // kondisi: gejala yang harus dijawab YA agar rule terpenuhi
 // bobot: kekuatan kesimpulan (3=kuat, 2=sedang, 1=lemah)
 const RULES = [

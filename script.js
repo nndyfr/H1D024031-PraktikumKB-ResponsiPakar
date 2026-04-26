@@ -1,9 +1,7 @@
-// script.js — AnemiaExpert
-
 let currentIdx = 0;
 let jawaban = {};
 
-/* ── Navigasi layar ── */
+// Navigasi layar
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
   document.getElementById(id).classList.remove('hidden');
@@ -25,14 +23,14 @@ function ulangi() {
   showScreen('screen-landing');
 }
 
-/* ── Progress bar ── */
+// Progres bar
 function updateProgress() {
   const pct = (currentIdx / GEJALA.length) * 100;
   document.getElementById('progress-fill').style.width = pct + '%';
   document.getElementById('quiz-counter').textContent = (currentIdx + 1) + ' / ' + GEJALA.length;
 }
 
-/* ── Tampilkan pertanyaan ── */
+// Tampilan pertanyaan
 function tampilkanGejala(idx, animate) {
   const card = document.getElementById('question-card');
 
@@ -64,7 +62,7 @@ function tampilkanGejala(idx, animate) {
   }
 }
 
-/* ── Jawab Ya / Tidak ── */
+// Jawab Ya / Tidak 
 function jawab(nilai) {
   const g = GEJALA[currentIdx];
   jawaban[g.id] = nilai;
@@ -78,14 +76,14 @@ function jawab(nilai) {
       updateProgress();
       tampilkanGejala(currentIdx, true);
     } else {
-      // Selesai — update progress ke 100% dulu
+      // Selesai update progress ke 100% dulu
       document.getElementById('progress-fill').style.width = '100%';
       setTimeout(tampilkanHasil, 300);
     }
   }, 320);
 }
 
-/* ── Kembali ke pertanyaan sebelumnya ── */
+// Kembali ke pertanyaan sebelumnya 
 function prevGejala() {
   if (currentIdx > 0) {
     currentIdx--;
@@ -94,7 +92,7 @@ function prevGejala() {
   }
 }
 
-/* ── Tampilkan hasil ── */
+// Tampilkan hasil 
 function tampilkanHasil() {
   const hasil = forwardChaining(jawaban);
   const { diagnosa, skor, rulesTerpenuhi, gejalaDitemukan } = hasil;
@@ -105,7 +103,7 @@ function tampilkanHasil() {
   document.getElementById('res-nama').textContent  = diagnosa.nama;
   document.getElementById('res-desc').textContent  = diagnosa.deskripsi;
 
-  // Warna aksen dinamis
+  // Warna 
   document.getElementById('screen-hasil').style.setProperty('--aksen', diagnosa.warna);
 
   // Statistik
@@ -168,7 +166,7 @@ function tampilkanHasil() {
   }, 100);
 }
 
-/* ── Keyboard shortcut ── */
+// Keyboard shortcut 
 document.addEventListener('keydown', e => {
   if (!document.getElementById('screen-quiz').classList.contains('hidden')) {
     if (e.key === 'y' || e.key === 'Y') jawab(true);

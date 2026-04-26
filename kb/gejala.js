@@ -1,14 +1,20 @@
-// kb/gejala.js — 10 gejala paling representatif untuk 4 jenis anemia
-
 const GEJALA = [
   { id: 'G01', teks: 'Apakah Anda sering merasa mudah lelah atau lemas meskipun tidak banyak beraktivitas?' },
   { id: 'G02', teks: 'Apakah wajah, kuku, atau bagian dalam kelopak mata Anda terlihat pucat?' },
   { id: 'G06', teks: 'Apakah rambut Anda rontok lebih banyak dari biasanya belakangan ini?' },
   { id: 'G07', teks: 'Apakah kuku Anda rapuh, mudah patah, atau berbentuk cekung seperti sendok?' },
+  { id: 'G08', teks: 'Apakah lidah Anda terasa nyeri, bengkak, atau permukaannya tampak lebih licin dari biasanya?' },
+  { id: 'G09', teks: 'Apakah Anda sering mengidam atau terdorong memakan benda bukan makanan seperti es batu, atau tepung?' },
+  { id: 'G10', teks: 'Apakah sudut bibir Anda sering mengalami luka atau pecah-pecah (sariawan sudut mulut)?' },
   { id: 'G11', teks: 'Apakah Anda merasakan kesemutan atau mati rasa di tangan atau kaki?' },
   { id: 'G12', teks: 'Apakah Anda sering mengalami gangguan daya ingat atau mudah lupa akhir-akhir ini?' },
+  { id: 'G13', teks: 'Apakah Anda pernah mengalami keseimbangan tubuh yang terganggu atau kesulitan berjalan lurus?' },
+  { id: 'G14', teks: 'Apakah mood Anda sering berubah tiba-tiba, mudah murung, atau mengalami perubahan kepribadian?' },
   { id: 'G15', teks: 'Apakah keluhan yang Anda rasakan sudah berlangsung lebih dari satu bulan?' },
   { id: 'G16', teks: 'Apakah Anda memiliki riwayat penyakit kronis seperti diabetes, lupus, TBC, atau gangguan ginjal?' },
+  { id: 'G17', teks: 'Apakah kulit atau bagian putih mata Anda pernah tampak menguning (ikterus/jaundice)?' },
   { id: 'G19', teks: 'Apakah urin Anda pernah berwarna gelap seperti teh atau kecokelatan?' },
+  { id: 'G20', teks: 'Apakah Anda merasakan nyeri atau kram mendadak di perut bagian atas atau punggung?' },
+  { id: 'G21', teks: 'Apakah anggota keluarga Anda (orang tua atau saudara kandung) pernah didiagnosis dengan kelainan darah seperti talasemia atau anemia bawaan?' },
   { id: 'G22', teks: 'Apakah menstruasi Anda sangat banyak atau berlangsung lebih dari 7 hari setiap bulannya?' },
 ];

@@ -1,9 +1,5 @@
-// kb/engine.js
 // Mesin inferensi Forward Chaining
-
 function forwardChaining(jawaban) {
-  // jawaban = { G01: true, G02: false, ... }
-
   const skor = { ADB: 0, ADF: 0, APK: 0, AHA: 0 };
   const rulesTerpenuhi = [];
 
