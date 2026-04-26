@@ -40,7 +40,7 @@ Output sistem berupa salah satu dari empat jenis anemia, atau tidak terindikasi 
 
 ## Basis Pengetahuan
 
-### Gejala (10 Gejala)
+### Gejala (18 Gejala)
 
 | Kode | Pertanyaan Gejala |
 |---|---|
@@ -48,11 +48,19 @@ Output sistem berupa salah satu dari empat jenis anemia, atau tidak terindikasi 
 | G02 | Wajah, kuku, atau kelopak mata terlihat pucat |
 | G06 | Rambut rontok lebih banyak dari biasanya |
 | G07 | Kuku rapuh, mudah patah, atau berbentuk cekung seperti sendok |
+| G08 | Lidah terasa nyeri, bengkak, atau permukaannya tampak lebih licin dari biasanya |
+| G09 | Sering mengidam atau terdorong memakan benda bukan makanan seperti es batu atau tepung |
+| G10 | Sudut bibir sering mengalami luka atau pecah-pecah (sariawan sudut mulut) |
 | G11 | Kesemutan atau mati rasa di tangan atau kaki |
 | G12 | Gangguan daya ingat atau mudah lupa |
+| G13 | Keseimbangan tubuh terganggu atau kesulitan berjalan lurus |
+| G14 | Mood sering berubah tiba-tiba, mudah murung, atau mengalami perubahan kepribadian |
 | G15 | Keluhan sudah berlangsung lebih dari satu bulan |
 | G16 | Riwayat penyakit kronis (diabetes, lupus, TBC, gangguan ginjal) |
+| G17 | Kulit atau bagian putih mata pernah tampak menguning (ikterus/jaundice) |
 | G19 | Urin pernah berwarna gelap seperti teh atau kecokelatan |
+| G20 | Nyeri atau kram mendadak di perut bagian atas atau punggung |
+| G21 | Anggota keluarga pernah didiagnosis kelainan darah seperti talasemia atau anemia bawaan |
 | G22 | Menstruasi sangat banyak atau berlangsung lebih dari 7 hari |
 
 ### Diagnosa (5 Output)
@@ -65,7 +73,7 @@ Output sistem berupa salah satu dari empat jenis anemia, atau tidak terindikasi 
 | AHA | Anemia Hemolitik | Sel darah merah dihancurkan lebih cepat dari kemampuan tubuh memproduksinya |
 | TIDAK | Tidak Terindikasi Anemia | Tidak ditemukan indikasi kuat ke arah anemia berdasarkan gejala yang dilaporkan |
 
-### Aturan Produksi (19 Aturan Forward Chaining)
+### Aturan Produksi (16 Aturan Forward Chaining)
 
 Setiap aturan memiliki bobot kekuatan: **3 = kuat**, **2 = sedang**, **1 = lemah**.
 
@@ -74,39 +82,36 @@ Setiap aturan memiliki bobot kekuatan: **3 = kuat**, **2 = sedang**, **1 = lemah
 | ID | Kondisi (Gejala Harus YA) | Bobot |
 |---|---|---|
 | R01 | G01, G02, G06, G07 | 3 |
-| R02 | G01, G02, G22 | 3 |
-| R03 | G07, G06, G02 | 2 |
-| R04 | G01, G22, G06 | 2 |
-| R05 | G02, G07, G22 | 2 |
+| R02 | G01, G02, G09 | 3 |
+| R03 | G07, G08, G10 | 3 |
+| R04 | G01, G02, G22 | 2 |
+| R07 | G06, G10, G02 | 2 |
 
 **Anemia Defisiensi Folat/B12 (ADF)**
 
 | ID | Kondisi (Gejala Harus YA) | Bobot |
 |---|---|---|
-| R06 | G11, G12, G01 | 3 |
-| R07 | G11, G12, G02 | 3 |
-| R08 | G01, G02, G11, G12 | 3 |
-| R09 | G12, G11, G15 | 2 |
-| R10 | G12, G01, G15 | 1 |
+| R09 | G11, G12, G13 | 3 |
+| R10 | G08, G13, G11 | 3 |
+| R11 | G01, G02, G11, G14 | 2 |
+| R13 | G12, G14, G01 | 1 |
 
 **Anemia Penyakit Kronis (APK)**
 
 | ID | Kondisi (Gejala Harus YA) | Bobot |
 |---|---|---|
-| R11 | G16, G15, G01, G02 | 3 |
-| R12 | G16, G15, G01 | 3 |
-| R13 | G16, G02, G15 | 2 |
-| R14 | G16, G01, G12 | 2 |
+| R14 | G16, G15, G01, G02 | 3 |
+| R15 | G16, G17, G02 | 3 |
+| R17 | G16, G01, G15 | 2 |
 
 **Anemia Hemolitik (AHA)**
 
 | ID | Kondisi (Gejala Harus YA) | Bobot |
 |---|---|---|
-| R15 | G19, G01 | 3 |
-| R16 | G19, G02 | 3 |
-| R17 | G19, G01, G02 | 3 |
-| R18 | G19, G15, G01 | 2 |
-| R19 | G19, G11, G02 | 2 |
+| R18 | G19, G20 | 3 |
+| R19 | G19, G17, G02 | 3 |
+| R20 | G21, G01, G02, G17 | 2 |
+| R21 | G21, G19 | 2 |
 
 Operator AND menggunakan evaluasi semua kondisi harus terpenuhi. Diagnosa ditentukan berdasarkan akumulasi bobot aturan yang terpenuhi tertinggi.
 
@@ -121,7 +126,7 @@ Operator AND menggunakan evaluasi semua kondisi harus terpenuhi. Diagnosa ditent
 | Vanilla JavaScript (ES6+) | Mesin forward chaining dan logika interaksi |
 | Google Fonts | Tipografi (DM Serif Display, DM Sans) |
 
-Tidak menggunakan framework atau library eksternal apapun — seluruh logika forward chaining diimplementasikan secara manual dalam `script.js`.
+Tidak menggunakan framework atau library eksternal apapun, seluruh logika forward chaining diimplementasikan secara manual dalam `script.js`.
 
 ---
 
